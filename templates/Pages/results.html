@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+<head>
+    <title>Drink Finder</title>
+
+</head>
+<body style="background-color:grey;">
+    <form action="/results" method = "post">
+        {% csrf_token %}
+        <input type="hidden" name="Ingredient" value={{query}}>
+        <input type="submit" value="New Drink!">
+    </form>
+    <h2>
+        <img src="{{drinkThumb}}" alt="Simply Easy Learning" width="200"> <br>
+        Drink Name: {{drinkName}}
+        <br>
+        Ingredients: <br>
+        {% for ingredient in ingredientsList %}
+            {% if ingredient.ing is not None %}
+                -
+                {% if ingredient.measure is not None %}
+                    {{ingredient.measure}}
+                {% endif %}
+                {{ingredient.ing}} <br>
+            {% endif %}
+        {% endfor %}
+
+        <br>
+        Instructions:
+        {{drinkInstr}}
+    </h2>
+</body>
+</html>
+
+
+{% endblock %}
