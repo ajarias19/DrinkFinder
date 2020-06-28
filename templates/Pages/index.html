@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Home Page</h1>
-    <form action="/results" method = "post">
+<body style="background-color:#EFDBB2;">
+    <h1>Welcome to Drink Finder!</h1>
+    <h3>Enter an ingredient below to find a random drink:</h3>
+    <form action="/results" method = "post"> 
         {% csrf_token %}
-        <input type="text" name="Ingredient">
+        <input type="text" name="Ingredient" >
         <input type="submit" value="submit">
     </form>
 
-{% if Error is not None %}
-<h4 style="color:red">{{Error}}</h4>
-{% endif %}
-
-    
+    {% if Error is not None %}
+    <h4 style="color:red">{{Error}}</h4>
+    {% endif %}
+</body>    
 {% endblock %}
